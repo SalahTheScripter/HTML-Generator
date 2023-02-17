@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>HTML Generator</title>
+</head>
+<body>
+    <div id="innpakning">
+        <input type="text" id="farge" placeholder="#FFFFFF">
+        <br><br>
+        <button onclick="byttFarge()">Bytt Farge</button>
+        <br><br>
+        <h1>HTML Generator</h1>
+        <form>
+            <!-- Nedtrekksmeny -->
+            <select name="element">
+                <option value="button">Button</option>
+                <option value="text">TextBox</option>
+                <option value="radio">Radio</option>
+            </select>
+            <!-- document.forms returnerer en samling av alle <form> elementer i et dokument. -->
+            <input type="button" value="Add" onclick="Add(document.forms[0].element.value)"/>
+            <span id="span">&nbsp;</span>
+        </form>
+        <br><br>
+        <h2>Lag en knapp</h2>
+        <input id="my-input" placeholder="Skriv tekst her" />
+        <input id="bakgrunnsfarge" placeholder="Endre bakgrunnsfarge">
+        <br>
+        <input id="bordercolor" placeholder="Endre bordercolor">
+        <input id="tekstfarge" placeholder="Endre tekstfarge">
+        <button id="my-button">Bekreft</button>       
+        <button id="my-other-button"></button>
+        </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
