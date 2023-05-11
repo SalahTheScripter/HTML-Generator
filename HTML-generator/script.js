@@ -6,44 +6,57 @@ function byttFarge() {
     body.style.backgroundColor=farge;
 }
 
-// Funksjon som bruker verdier fra document.forms for å lage html elementet.
-function Add(type) {
-    // Lager en input type dynamisk
-    var element = document.createElement("input");
-    // Ulike attributer til elementet
-    element.setAttribute("type", type);
-    element.setAttribute("value", type);
-    element.setAttribute("name", type);
-    var span = document.getElementById("span");
-    // Legge til elementet (i span)
-    span.appendChild(element)
-}
+// Henter referanser til nødvendige elementer
+const elementSelect = document.getElementById('element-select');
+const elementContent = document.getElementById('element-content');
+const elementStyle = document.getElementById('element-style');
+const positionSelect = document.getElementById('position-select');
+const customPositionDiv = document.getElementById('custom-position');
+const customPositionInput = document.getElementById('custom-position-input');
+const createElementButton = document.getElementById('create-element');
+const outputContainer = document.getElementById('output-container');
 
-// Variabler
-const myInput = document.getElementById('my-input');
-const myButton = document.getElementById('my-button');
-const myOtherButton = document.getElementById('my-other-button');
-const bakgrunnsFarge = document.getElementById('bakgrunnsfarge');
-const tekstFarge = document.getElementById('tekstfarge');
-const borderColor = document.getElementById('bordercolor');
+// Legger til klikk-hendelsen på knappen
+createElementButton.addEventListener('click', () => {
+  const selectedElement = elementSelect.value;
+  const content = elementContent.value;
+  const style = elementStyle.value;
+  const position = positionSelect.value;
+  const customPosition = customPositionInput.value;
 
-// Knappen blir usynlig
-myOtherButton.style.display = 'none';
+  // Oppretter et nytt HTML-element og setter innholdet
+  const newElement = document.createElement(selectedElement);
+  newElement.innerText = content;
 
-// Event
-myButton.addEventListener('click', function(event) {
-  
-  const myInputValue = myInput.value;
-  const bakgrunnsFargeValue = bakgrunnsFarge.value;
-  const tekstFargeValue = tekstFarge.value;
-  const borderColorValue = borderColor.value;
-  
-  myOtherButton.style.display = 'block';
-  
-  // Setter html-innholdet til elementet
-  myOtherButton.innerHTML = myInputValue;
-  myOtherButton.style.backgroundColor = bakgrunnsFargeValue;
-  myOtherButton.style.color = tekstFargeValue;
-  myOtherButton.style.borderColor = borderColorValue;
-})
+  // Setter stilene for det opprettede elementet
+  newElement.style.cssText = style;
 
+  // Plasserer det nye elementet basert på valgt posisjon
+  if (position === 'first') {
+      outputContainer.prepend(newElement); // Plasserer elementet først i output-container
+  } else if (position === 'last') {
+      outputContainer.appendChild(newElement); // Plasserer elementet sist i output-container
+  } else if (position === 'custom') {
+      const targetElement = document.querySelector(customPosition);
+      if (targetElement) {
+          targetElement.insertAdjacentElement('afterend', newElement); // Plasserer elementet etter målelementet
+      } else {
+          console.error('Ugyldig målelement. Vennligst sjekk ID eller klasse.');
+      }
+  }
+
+  // Tømmer innholdet i tekstfeltene etter at elementet er opprettet
+  elementContent.value = '';
+  elementStyle.value = '';
+  customPositionInput.value = '';
+});
+
+// Viser eller skjuler tilpasset plasseringsinput basert på valgt posisjon
+positionSelect.addEventListener('change', () => {
+  const selectedPosition = positionSelect.value;
+  if (selectedPosition === 'custom') {
+      customPositionDiv.style.display = 'block';
+  } else {
+      customPositionDiv.style.display = 'none';
+  }
+});

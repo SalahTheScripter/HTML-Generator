@@ -1,3 +1,15 @@
+/* Stiler for plassering av nye elementer */
+.container {
+  margin: 20px;
+}
+
+/* Stiler for de opprettede HTML-elementene */
+.generated-element {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f0f0f0;
+}
+
 h1 {
     font-family: Arial, Helvetica, sans-serif;
     font-style: italic;
@@ -6,4 +18,16 @@ h1 {
 h2 {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
+}
+
+@media only screen and (max-width: 600px) {
+    h1 {
+        font-size: 5.9vw;
+      }
+      h2 {
+        font-size: 3.0vh;
+      }
+      p {
+        font-size: 2vmin;
+      }
 }

@@ -14,26 +14,50 @@
         <button onclick="byttFarge()">Bytt Farge</button>
         <br><br>
         <h1>HTML Generator</h1>
-        <form>
-            <!-- Nedtrekksmeny -->
-            <select name="element">
-                <option value="button">Button</option>
-                <option value="text">TextBox</option>
-                <option value="radio">Radio</option>
+        <div class="container">
+            <label for="element-select">Velg HTML-element:</label>
+            <select id="element-select">
+                <option value="div">div</option>
+                <option value="p">p</option>
+                <option value="h1">h1</option>
+                <option value="h2">h2</option>
+                <option value="h3">h3</option>
             </select>
-            <!-- document.forms returnerer en samling av alle <form> elementer i et dokument. -->
-            <input type="button" value="Add" onclick="Add(document.forms[0].element.value)"/>
-            <span id="span">&nbsp;</span>
-        </form>
-        <br><br>
-        <h2>Lag en knapp</h2>
-        <input id="my-input" placeholder="Skriv tekst her" />
-        <input id="bakgrunnsfarge" placeholder="Endre bakgrunnsfarge">
-        <br>
-        <input id="bordercolor" placeholder="Endre bordercolor">
-        <input id="tekstfarge" placeholder="Endre tekstfarge">
-        <button id="my-button">Bekreft</button>       
-        <button id="my-other-button"></button>
+    
+            <br><br>
+    
+            <label for="element-content">Innhold:</label>
+            <input type="text" id="element-content">
+    
+            <br><br>
+    
+            <label for="element-style">Stiler:</label>
+            <input type="text" id="element-style">
+    
+            <br><br>
+
+            
+            <label for="position-select">Plassering:</label>
+            <select id="position-select">
+                <option value="first">Først</option>
+                <option value="last">Sist</option>
+                <option value="custom">Velg posisjon</option>
+            </select>
+
+            <br><br>
+
+            <div id="custom-position" style="display: none;">
+                <label for="custom-position-input">ID eller klasse:</label>
+                <input type="text" id="custom-position-input">
+            </div>
+    
+            <br><br>
+            
+            <button id="create-element">Opprett HTML-element</button>
+        </div>
+    
+        <div class="container" id="output-container">
+            <h2>Resultat:</h2>
         </div>
 
     <script src="script.js"></script>
